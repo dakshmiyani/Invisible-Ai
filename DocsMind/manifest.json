@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "DocsMind",
+  "name": "Invisible AI",
   "version": "1.0.0",
-  "description": "Google Docs-style AI writing assistant",
+  "description": "A high-fidelity document editor with a seamless AI writing assistant.",
   "permissions": ["storage", "activeTab", "contextMenus"],
   "action": {
     "default_popup": "popup.html",
