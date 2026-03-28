@@ -1,4 +1,4 @@
-// DocsMind Core Logic - Full Professional Edition
+// Invisible AI Core Logic - Full Professional Edition
 document.addEventListener('DOMContentLoaded', () => {
     const editor = document.getElementById('editor');
     const docTitle = document.getElementById('doc-title');
