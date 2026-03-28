@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "DocsMind",
+  "version": "1.0.0",
+  "description": "Google Docs-style AI writing assistant",
+  "permissions": ["storage", "activeTab", "contextMenus"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_width": 1000,
+    "default_height": 700
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

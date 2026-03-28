@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocsMind</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="marked.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Toolbar Wrapper -->
+        <header class="toolbar-wrapper">
+            <div class="toolbar-top">
+                <div class="logo-section">
+                    <img src="icons/icon48.png" alt="DocsMind" class="docs-logo">
+                    <div class="title-container">
+                        <input type="text" id="doc-title" value="Untitled document" class="doc-title-input">
+                        <nav class="toolbar-nav">
+                    <div class="menu-item">
+                        <span>File</span>
+                        <div class="menu-dropdown">
+                            <div class="menu-option" id="menu-file-new">New</div>
+                            <div class="menu-option" id="menu-file-save">Save</div>
+                            <div class="menu-option" id="menu-file-export">Download (Docx)</div>
+                            <div class="menu-option" id="menu-file-reset">Reset document</div>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span>Edit</span>
+                        <div class="menu-dropdown">
+                            <div class="menu-option" id="menu-edit-undo">Undo</div>
+                            <div class="menu-option" id="menu-edit-redo">Redo</div>
+                            <div class="divider"></div>
+                            <div class="menu-option" id="menu-edit-selectall">Select All</div>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span>View</span>
+                        <div class="menu-dropdown">
+                            <div class="menu-option" id="menu-view-fullscreen">Fullscreen</div>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span>Insert</span>
+                        <div class="menu-dropdown">
+                            <div class="menu-option" id="menu-insert-hr">Horizontal line</div>
+                            <div class="menu-option" id="menu-insert-link">Link</div>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span>Format</span>
+                        <div class="menu-dropdown">
+                            <div class="menu-option" id="menu-format-bold">Bold</div>
+                            <div class="menu-option" id="menu-format-italic">Italic</div>
+                            <div class="menu-option" id="menu-format-underline">Underline</div>
+                            <div class="menu-option" id="menu-format-clear">Clear formatting</div>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span>Tools</span>
+                        <div class="menu-dropdown">
+                            <div class="menu-option" id="menu-tools-api">API Settings</div>
+                            <div class="menu-option" id="menu-tools-count">Word count</div>
+                        </div>
+                    </div>
+                </nav>
+                    </div>
+                </div>
+                <div class="toolbar-right">
+                    <div class="saving-indicator" id="saving-indicator">
+                        <span class="indicator-text">Saved to Drive</span>
+                    </div>
+                    <div class="user-profile">D</div>
+                </div>
+            </div>
+            
+            <div class="toolbar-bottom">
+                <div class="toolbar-actions">
+                    <button class="icon-btn tooltip" data-tooltip="Undo" id="undo-btn">
+                        <svg viewBox="0 0 24 24"><path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z"/></svg>
+                    </button>
+                    <button class="icon-btn tooltip" data-tooltip="Redo" id="redo-btn">
+                        <svg viewBox="0 0 24 24"><path d="M18.4 10.6C16.55 8.99 14.15 8 11.5 8c-4.65 0-8.58 3.03-9.96 7.22L3.9 16c1.05-3.19 4.05-5.5 7.6-5.5 1.95 0 3.73.72 5.12 1.88L13 16h9V7l-3.6 3.6z"/></svg>
+                    </button>
+                    <div class="divider"></div>
+                    <div class="font-selector tooltip" data-tooltip="Font" id="font-family-btn">
+                        <span id="current-font">Arial</span>
+                        <svg viewBox="0 0 24 24" width="12" height="12"><path d="M7 10l5 5 5-5z"/></svg>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="size-selector">
+                        <button id="size-decrease">-</button>
+                        <span id="current-size">11</span>
+                        <button id="size-increase">+</button>
+                    </div>
+                    <div class="divider"></div>
+                    <button class="icon-btn tooltip" data-tooltip="Bold (Ctrl+B)" id="bold-btn">
+                        <svg viewBox="0 0 24 24"><path d="M15.6 10.79c.97-.67 1.65-1.77 1.65-2.79 0-2.26-1.75-4-4-4H7v14h7.04c2.09 0 3.71-1.7 3.71-3.79 0-1.52-.86-2.82-2.15-3.42zM10 6.5h3c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-3v-3zm3.5 9H10v-3h3.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5z"/></svg>
+                    </button>
+                    <button class="icon-btn tooltip" data-tooltip="Italic (Ctrl+I)" id="italic-btn">
+                        <svg viewBox="0 0 24 24"><path d="M10 4v3h2.21l-3.42 8H6v3h8v-3h-2.21l3.42-8H18V4z"/></svg>
+                    </button>
+                    <button class="icon-btn tooltip" data-tooltip="Underline (Ctrl+U)" id="underline-btn">
+                        <svg viewBox="0 0 24 24"><path d="M12 19c3.31 0 6-2.69 6-6V3h-2.5v10c0 1.93-1.57 3.5-3.5 3.5S8.5 14.93 8.5 13V3H6v10c0 3.31 2.69 6 6 6z"/><path d="M5 21h14v2H5z"/></svg>
+                    </button>
+                    <button class="icon-btn tooltip" data-tooltip="Text color" id="text-color-btn">
+                        <svg viewBox="0 0 24 24"><path d="M11 3L5.5 17h2.25l1.12-3h6.25l1.12 3h2.25L13 3h-2zm-1.38 9L12 5.67 14.38 12H9.62z"/><path d="M0 20h24v4H0z" fill="#000" id="color-bar"/></svg>
+                        <input type="color" id="color-picker" style="display:none">
+                    </button>
+                    <div class="divider"></div>
+                    <button class="ai-ask-btn" id="ask-ai-btn">
+                        ✨ Ask
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="editor-outer">
+            <div class="editor-paper" id="editor" contenteditable="true" spellcheck="false">
+                <p data-type="user">Start writing...</p>
+            </div>
+        </main>
+
+        <!-- Status Bar -->
+        <footer class="status-bar">
+            <div class="status-left">
+                <span id="word-count">Words: 0</span> | 
+                <span id="char-count">Characters: 0</span>
+            </div>
+            <div class="status-right">
+                <button id="export-btn">Export v</button>
+            </div>
+        </footer>
+
+        <!-- Modals -->
+        <div class="modal-overlay" id="api-modal">
+            <div class="modal-card">
+                <h2>Welcome to DocsMind</h2>
+                <p>Please enter your <b>Groq API Key</b> to enable AI features.</p>
+                <input type="password" id="api-key-input" placeholder="gsk-..." class="google-input">
+                <div class="modal-actions">
+                    <button class="google-btn secondary" id="close-modal">Cancel</button>
+                    <button class="google-btn primary" id="save-api-key">Save Key</button>
+                </div>
+                <p style="font-size: 11px; color: #666; margin-top: 12px;">Get your key from <a href="https://console.groq.com/keys" target="_blank" style="color: var(--google-blue);">console.groq.com</a></p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
